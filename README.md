@@ -3,7 +3,7 @@ MarkupProject
 
 Info
 ----
-Create a class in the langauge of your choice that will read HTML content input and score and give
+Create a class in the language of your choice that will read HTML content input and score and give
 an arbitrary score based on a set of rules. The content should be assigned a unique id based on the prefix described below.
 Changes to the content can be re-run over time to determine improvement or regression of the score. Each unique run should be stored with the date and time it was run along with the score received for the content.
 
@@ -98,7 +98,6 @@ ie:
 
 Instructions
 ------------
-* Fork this repo into your own github account.  
-* Begin working on the project and commit your code to your forked repo.
-* When you are finished. Email your RedVentures recruiter or submit a pull request on the project.
+* Begin working on the project and commit your code to this repo.
+* When you are finished email your RedVentures recruiter.
 * Note that each folder has a blank README.md file.  Feel free to place any notes you may have in these files.

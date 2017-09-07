@@ -14,13 +14,31 @@ Code Requirements
 * Accept HTML Content Input
 * Accept unique id for HTML Content to score (filename prefix)
 * Score HTML content using the scoring guide
-* Save results to a MySQL database
+* Save results to a SQL database (MySQL, SQL Server, sqlite, SQL Server Express)
 * Method: Retrieve scores for a unique id
 * Method: Retrieve all scores run in the system for a custom date range
 * Method: Retrieve highest scored unique id
 * Method: Retrieve lowest scored unique id
 * Additionally you should write one query that will find the average score for all runs **__see project layout below__**
 * Finally, include instructions on how to get your code running.  Include the version of whatever language you wrote it in, as well as what platform (windows/osx/linux, etc) you are on.  This helps us get running with your code.
+
+**Example of instructions and platform specifications**
+
+>**Languages and tools used:**
+>
+>- Node v8.4.0
+>- NPM v5.3.0
+>- MySQL 5.7.17
+>- SublimeText3 as my IDE
+>- macOS High Sierra
+>
+>**Instructions**
+>
+>1. Start a local SQL server instance (I used 'mysql.server start' in the Terminal).
+>2. Run SQL commands found in /schema/markup_schema.sql to create the database and tables.
+>3. Navigate to the src/ directory
+>4. run `npm install`
+>4. run `npm start`
 
 ## Bonus
 * Tag names are case-insensitive (ie: Html is the same as html)

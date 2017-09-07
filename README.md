@@ -31,7 +31,7 @@ Code Requirements
 >- MySQL 5.7.17
 >- SublimeText3 as my IDE
 >- macOS High Sierra
-
+>
 >**Instructions**
 >
 >1. Start a local SQL server instance (I used 'mysql.server start' in the Terminal).

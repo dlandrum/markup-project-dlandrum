@@ -22,7 +22,7 @@ Code Requirements
 * Additionally you should write one query that will find the average score for all runs **__see project layout below__**
 * Finally, include instructions on how to get your code running.  Include the version of whatever language you wrote it in, as well as what platform (windows/osx/linux, etc) you are on.  This helps us get running with your code.
 
-## Example of instructions and platform specifications
+**Example of instructions and platform specifications**
 
 >**Languages and tools used:**
 >

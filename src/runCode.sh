@@ -1,5 +1,8 @@
 #!/bin/bash
-mysql -u dummyuser -p < ../schema/markup.sql
+
+#This file written by Don Landrum on October 29th, 2017
+
+mysql -u "$1" -p < ../schema/markup.sql
 make > /dev/null
 for file in ../data/*.html
 do

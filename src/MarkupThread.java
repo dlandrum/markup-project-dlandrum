@@ -1,3 +1,5 @@
+//This file written by Don Landrum on October 28th, 2017
+
 import java.io.LineNumberReader;
 import java.io.FileReader;
 
@@ -14,34 +16,31 @@ public class MarkupThread extends Thread {
     this.score = 0;
     this.name = name;
   }
-  public void run() {
+  public void run() { //runs when the thread is started
     try {
       LineNumberReader lnr = new LineNumberReader(new FileReader(this.fileName));
-      lnr.skip(this.startPosition);
-      String s = this.name+" ";
-      while (this.startPosition != 0) {
-        char c = (char) lnr.read();
-        s += c;
+      lnr.skip(this.startPosition); //moves to the startPosition
+      while (this.startPosition != 0) { //excludes the beginning of the file
+        char c = (char) lnr.read(); //reads until the end of the line
         if (c == '\n' || c == '\r') {
           break;
         }
       }
       while (lnr.getLineNumber() < this.endLine+1) {
+        //reads up to the endLine, inclusive
         String line = lnr.readLine();
         if (line == null) {
           break;
         }
-        this.scoreString(line);
+        this.scoreString(line); //scores the line
       }
     }
     catch (Exception e) {
       e.printStackTrace();
     }
   }
-  public String toString() {
-    return (this.name+" "+this.startPosition+" "+this.endLine);
-  }
   private void scoreString(String s) {
+    //assumes that we have been given valid HTML code
     int openIndex = s.indexOf('<');
     int closeIndex = s.indexOf('>');
     if (openIndex == -1) { //no tags
@@ -54,6 +53,7 @@ public class MarkupThread extends Thread {
         contents = contents.substring(0,space);
       }
       contents = contents.toLowerCase();
+      //at this point, contents is the tag
       if (contents.contains("frame")) {
         this.score -= 5;
       }
@@ -82,12 +82,12 @@ public class MarkupThread extends Thread {
         System.out.println("Invalid tag name");
       }
     }
-    if (s.length() > closeIndex+1) { //more stuff follows
+    if (s.length() > closeIndex+1) { //more stuff follows, keep trying to score it
       String sub = s.substring(closeIndex+1);
       scoreString(sub);
     }
   }
-  public int getScore() {
+  public int getScore() { //return the score
     return this.score;
   }
 }

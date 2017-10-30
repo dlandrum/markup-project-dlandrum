@@ -1,3 +1,5 @@
+//This file written by Don Landrum on October 28th, 2017
+
 import java.util.Scanner;
 import java.sql.*;
 import java.util.Date;
@@ -5,7 +7,7 @@ import java.text.SimpleDateFormat;
 
 public class Interaction {
   public static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
-  public static final String DB_URL = "jdbc:mysql://localhost/mydb";
+  public static final String DB_URL = "jdbc:mysql://localhost/dldb";
   public static void main(String[] args) {
     String userName = args[0];
     String passWord = args[1];
@@ -24,21 +26,22 @@ public class Interaction {
           "5. Find the average score for all runs\n"+
           "6. Exit");
         int input = in.nextInt();
-        switch(input) {
-          case 1:
+        switch(input) { //do different things based on the input
+          //throughout this switch, I use involved naming to get around compiler errors.
+          case 1: //all entries by one user
             Statement stmt1 = conn.createStatement();
             in.nextLine();
             System.out.println("Please enter the ID");
             String id = in.nextLine();
-            String sql1 = "SELECT score FROM markup WHERE id IN (\'"+id+"\')";
+            String sql1 = "SELECT date,score FROM markup WHERE id IN (\'"+id+"\')";
             ResultSet rs1 = stmt1.executeQuery(sql1);
             while(rs1.next()) {
-              System.out.println(rs1.getInt("score"));
+              System.out.println(rs1.getString("date")+": "+rs1.getInt("score"));
             }
             rs1.close();
             stmt1.close();
             break;
-          case 2:
+          case 2: //all entries in a data range
             Statement stmt2 = conn.createStatement();
             in.nextLine();
             System.out.println("Please enter the lower date limit in the format yyyy_mm_dd");
@@ -48,15 +51,15 @@ public class Interaction {
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy_MM_dd");
             Date l = sdf.parse(lower);
             Date u = sdf.parse(upper);
-            String sql2 = "SELECT score FROM markup WHERE timestamp > "+l.getTime()+" AND timestamp < "+u.getTime();
+            String sql2 = "SELECT id,date,score FROM markup WHERE timestamp > "+l.getTime()+" AND timestamp < "+u.getTime();
             ResultSet rs2 = stmt2.executeQuery(sql2);
             while(rs2.next()) {
-              System.out.println(rs2.getInt("score"));
+              System.out.println(rs2.getString("id")+" "+rs2.getString("date")+": "+rs2.getInt("score"));
             }
             rs2.close();
             stmt2.close();
             break;
-          case 3:
+          case 3: //find user with largest average score
             Statement stmt3 = conn.createStatement();
             String maxId = "";
             int maxScore = Integer.MIN_VALUE;
@@ -79,9 +82,9 @@ public class Interaction {
             }
             rs3.close();
             stmt3.close();
-            System.out.println(maxId);
+            System.out.println(maxId+": "+maxScore);
             break;
-          case 4:
+          case 4: //find user with lowest average score
             Statement stmt4 = conn.createStatement();
             String minId = "";
             int minScore = Integer.MAX_VALUE;
@@ -104,14 +107,14 @@ public class Interaction {
             }
             rs4.close();
             stmt4.close();
-            System.out.println(minId);
+            System.out.println(minId+": "+minScore);
             break;
-          case 5:
+          case 5: //average all of the scores
             Statement stmt5 = conn.createStatement();
             String sql5 = "SELECT AVG(score) FROM markup";
             ResultSet rs5 = stmt5.executeQuery(sql5);
             while (rs5.next()) {
-              System.out.println(rs5.getInt("AVG(score)"));
+              System.out.println("Average: "+rs5.getInt("AVG(score)"));
             }
             rs5.close();
             stmt5.close();

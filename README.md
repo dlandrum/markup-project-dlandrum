@@ -1,6 +1,10 @@
 MarkupProject
 =============
 
+Update from Don Landrum
+-----------------------
+Languages and Instructions can be found in the README.md file in the src directory.
+
 Info
 ----
 Create a class in the language of your choice that will read HTML content input and score and give

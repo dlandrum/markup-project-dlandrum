@@ -1,3 +1,5 @@
+# This file written by Don Landrum on October 29th, 2017
+
 JCC = javac
 
 JFLAGS = -classpath .:../vendor/*

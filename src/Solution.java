@@ -8,11 +8,11 @@ public class Solution {
   public static final int THREAD_COUNT = 4;
   public static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
   public static final String DB_URL = "jdbc:mysql://localhost/mydb";
-  public static final String USER = "dummyuser";
-  public static final String PASS = "dummypass";
   public static void main(String[] args) {
     long startTime = System.currentTimeMillis();
     String fileName = args[0];
+    String userName = args[1];
+    String passWord = args[2];
     int firstUnderscore = fileName.indexOf('_');
     String fileId = fileName.substring(0,firstUnderscore);
     int lastSlash = fileId.lastIndexOf('/');
@@ -54,7 +54,7 @@ public class Solution {
       }
 //put it in the database
       Class.forName(JDBC_DRIVER);
-      Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
+      Connection conn = DriverManager.getConnection(DB_URL, userName, passWord);
       String query = "INSERT INTO markup(id,timestamp,score) VALUES (?,?,?)";
       PreparedStatement prepStmt = conn.prepareStatement(query);
       prepStmt.setString(1, fileId);

@@ -6,14 +6,14 @@ import java.text.SimpleDateFormat;
 public class Interaction {
   public static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
   public static final String DB_URL = "jdbc:mysql://localhost/mydb";
-  public static final String USER = "dummyuser";
-  public static final String PASS = "dummypass";
   public static void main(String[] args) {
+    String userName = args[0];
+    String passWord = args[1];
     Scanner in = new Scanner(System.in);
     System.out.println("The scores have been calculated!");
     try {
       Class.forName(JDBC_DRIVER);
-      Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
+      Connection conn = DriverManager.getConnection(DB_URL, userName, passWord);
       boolean loop = true;
       while (loop) {
         System.out.println("Please type the integer corresponding to one of the following options:\n"+

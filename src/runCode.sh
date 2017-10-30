@@ -3,7 +3,7 @@ mysql -u dummyuser -p < ../schema/markup.sql
 make > /dev/null
 for file in ../data/*.html
 do
-  java -classpath .:../vendor/* Solution "$file" &>/dev/null
+  java -classpath .:../vendor/* Solution "$file" "$1" "$2" &>/dev/null
 done
-java -classpath .:../vendor/* Interaction
+java -classpath .:../vendor/* Interaction "$1" "$2"
 make clean > /dev/null

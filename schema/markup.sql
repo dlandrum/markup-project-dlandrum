@@ -1,3 +1,6 @@
+DROP DATABASE IF EXISTS mydb;
+CREATE DATABASE mydb;
+USE mydb;
 DROP TABLE IF EXISTS markup;
 CREATE TABLE markup (
   id char(15) NOT NULL DEFAULT '',

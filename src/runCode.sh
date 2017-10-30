@@ -1,9 +1,9 @@
 #!/bin/bash
-mysql -u username -p mydb < ../schema/markup.sql
-make clean
-make
+make clean > /dev/null
+mysql -u dummyuser -p mydb < ../schema/markup.sql
+make > /dev/null
 for file in ../data/*.html
 do
-  java -classpath .:../vendor/* Solution "$file"
+  java -classpath .:../vendor/* Solution "$file" &>/dev/null
 done
-make clean
+java -classpath .:../vendor/* Interaction
